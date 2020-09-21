@@ -7,14 +7,14 @@
 <script>
 import Stock from '../components/Stock.vue'
 export default {
-    data(){
-        return{
-           stocks: this.$store.state.stocks,
-        }
-    },
     components:{
         appStock : Stock
+    },
+     computed:{
+    stocks(){
+      return this.$store.state.stocks
     }
+  },
 }
 </script>
 

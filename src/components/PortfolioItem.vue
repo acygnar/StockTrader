@@ -8,7 +8,7 @@
       <input v-model.number="sellQuantity" type="number" class="form-control" placeholder="Quantity">
     </div>
     <div class="col">
-          <button :disabled='sellQuantity<=0' type="button" class="btn btn-primary green" @click="sell">Sell</button>
+          <button :disabled='sellQuantity<=0 || sellQuantity > this.portfolioItem.quantity ' type="button" class="btn btn-primary green" @click="sell">Sell</button>
     </div>
   </div>
 </form>

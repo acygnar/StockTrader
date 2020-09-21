@@ -11,13 +11,23 @@
         <a class="nav-link" href="#" tabindex="-1" aria-disabled="true" @click="endDay">End day</a>
       </li>
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="nav-link dropdown-toggle"
+           href="#" id="navbarDropdown"
+           role="button"
+           data-toggle="dropdown"
+           aria-haspopup="true"
+           aria-expanded="false"
+           @click="isDroped =! isDroped">
           Save & Load
         </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <transition
+                 mode="in=out"
+                 name="slide-fade">
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown" :class="{open:isDroped}" v-show="isDroped">
           <a class="dropdown-item" @click='save' href="#">Save data</a>
           <a class="dropdown-item" @click='load' href="#">Load data</a>
         </div>
+        </transition>
       </li>
       <li class="nav-item">
         <span class="nav-link">Founds: ${{ founds }}</span>
@@ -31,7 +41,8 @@ import axios from 'axios';
 export default {
   data(){
     return{
-      resultArray :[]
+      resultArray :[],
+      isDroped : false,
     }
   },
   methods:{
@@ -64,3 +75,16 @@ export default {
   },
 }
 </script>
+<style scoped>
+.slide-fade-enter-active {
+  transition: all .3s ease;
+}
+.slide-fade-leave-active {
+  transition: all .3s
+}
+.slide-fade-enter, .slide-fade-leave-to
+{
+  transform: translateY(-20px);
+  opacity: 0.5;
+}
+</style>
